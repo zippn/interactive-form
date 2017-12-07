@@ -1,6 +1,8 @@
+/**job**/
 #other-title{
     display: none;
 }
+/**shirts**/
 #colors-js-puns {
     display: none;
 }
@@ -13,7 +15,15 @@
 #color .active-color{
     display: block;
 }
+/*event**/
 .disable-activity{
 
     color: grey;
+}
+/**payment **/
+.disable-payment{
+    display: none;
+}
+div .active-payment{
+    display: block;
 }
