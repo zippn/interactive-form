@@ -1,0 +1,19 @@
+#other-title{
+    display: none;
+}
+#colors-js-puns {
+    display: none;
+}
+#colors-js-puns.active-menu{
+    display: block;
+}
+#color option{
+    display: none;
+}
+#color .active-color{
+    display: block;
+}
+.disable-activity{
+
+    color: grey;
+}
