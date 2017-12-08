@@ -1,19 +1,19 @@
 /**job**/
 #other-title{
-    display: none;
 }
 /**shirts**/
 #colors-js-puns {
-    display: none;
 }
 #colors-js-puns.active-menu{
     display: block;
 }
 #color option{
-    display: none;
 }
 #color .active-color{
     display: block;
+}
+.hide{
+    display: none;
 }
 /*event**/
 .disable-activity{
@@ -26,4 +26,14 @@
 }
 div .active-payment{
     display: block;
+}
+
+/**validate**/
+
+input.required-input{
+    border: 2px solid tomato;
+}
+label.required-input,
+fieldset.required-input legend{
+    color: tomato;
 }

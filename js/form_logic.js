@@ -11,14 +11,19 @@ $(cost).appendTo('.activities');
 
 //Set design/color
 const shirtDesign = document.getElementById('design');
-
+$('#colors-js-puns').hide();
 //Generate Job Role Other
+/*
 var jobRoleOther = document.createElement('INPUT');
-const selectJob = document.getElementById('title');
 jobRoleOther.type = 'text';
 jobRoleOther.id = 'other-title';
 jobRoleOther.placeholder = 'Your Job Role';
 $(jobRoleOther).insertAfter('#title');
+*/
+//Get job menu
+const selectJob = document.getElementById('title');
+const jobRoleOther = document.getElementById('other-title');
+jobRoleOther.style.display = 'none';
 
 //Paypment mods
 const payFieldSet = $('form fieldset').last();
@@ -36,7 +41,9 @@ $('#credit-card').removeClass('disable-payment').addClass('active-payment');
 
 //Initial focus
 $('#name').focus();
-
+$('form').submit(function (e) {
+    validate(e);
+});
 //Toggle display for job: other
 selectJob.addEventListener('change',function (e) {
 
@@ -45,7 +52,7 @@ selectJob.addEventListener('change',function (e) {
            jobRoleOther.style.display = 'block';//set visible
            break;
        default:
-           jobRoleOther.style.display = '';
+           jobRoleOther.style.display = 'none';
 
    }
 });
@@ -53,7 +60,7 @@ selectJob.addEventListener('change',function (e) {
 //Shirt Design
 shirtDesign.addEventListener('change',function (e) {
     const selectColorSet = document.getElementById('colors-js-puns');
-    const selectColor = document.getElementById('color');
+   // const selectColor = document.getElementById('color');
 
     switch (e.target.value){//action for different shirts
         case 'js puns':
@@ -66,10 +73,10 @@ shirtDesign.addEventListener('change',function (e) {
     }
     switch (shirtDesign.selectedIndex){//set display on color menu
         case 0:
-            selectColorSet.className = '';
+            $(selectColorSet).hide();
             break;
         default:
-            selectColorSet.className = 'active-menu';
+            $(selectColorSet).show();
 
 
     }
@@ -112,7 +119,7 @@ function setActiveColor(design, setIndex) {
 
     selectColor.selectedIndex = setIndex;//set a color option when filtering shirt type
 
-
+    colors.addClass('hide');
     colors.each(function () {
 
         $(this).is(':contains("' + design + '")')? $(this).addClass('active-color'):$(this).removeClass('active-color');//remove select color from view
@@ -131,8 +138,12 @@ function disableActivity(selectedEvent,selectedTime, checked) {
 
     events.each(function () {
         const current = $(this).find('input');
+        console.log(selectedTime+' '+this.textContent);
+        console.log(selectedTime.indexOf(this.textContent)!==-1);
 
-        if (current.attr('name')!==selectedEvent.attr('name')&&selectedTime.indexOf(this.textContent)!==-1){//different event with same time slot
+        console.log(current.attr('name')!==selectedEvent.attr('name'));
+
+        if (current.attr('name')!==selectedEvent.attr('name')&&this.textContent.indexOf(selectedTime)!==-1){//different event with same time slot
             //console.log(current.attr('name')+' '+eventTime);
             setActives(current,current.parent(),checked);
 
