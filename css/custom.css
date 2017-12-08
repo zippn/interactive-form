@@ -37,3 +37,11 @@ label.required-input,
 fieldset.required-input legend{
     color: tomato;
 }
+label.required-input::after{
+    content: ' * Input Error';
+    font-size: 0.7em;
+}
+label.empty-input::after{
+    content: ' * Input Empty';
+    font-size: 0.7em;
+}
