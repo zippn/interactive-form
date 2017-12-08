@@ -115,13 +115,13 @@ function validate(e) {
 //add error warning for invalid iput
 function addError(selector) {
     falseCount +=1;
-    console.log('err');
+    //console.log('err');
     //console.log($('[for="'+selector.attr('id')+'"]'));
     $('[for="'+selector.attr('id')+'"]').addClass('required-input');
     selector.addClass('required-input');
 
     if(selector.attr('type')!=='checkbox'){
-        console.log(selector.attr('type'));
+        
         if(!selector.val()||selector.val()===" "){
             $('[for="'+selector.attr('id')+'"]').addClass('empty-input');
             selector.addClass('empty-input');
