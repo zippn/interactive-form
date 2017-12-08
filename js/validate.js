@@ -1,15 +1,32 @@
 let falseCount = 0;
+const name = $('#name');
+const mail = $('#mail');
+const activities = $('.activities input');
+const ccNum = $('#cc-num');
+const zipNum = $('#zip');
+const cvvNum = $('#cvv');
 
+
+mail.on('input',function () {
+    if(!validateEmail(mail.val())) {
+        addError(mail);
+    }else {
+        $(this).prev().removeClass('required-input');
+
+        $(this).removeClass('required-input');
+
+    }
+});
 function validate(e) {
 
     let validForm = false;
     falseCount = 0;
-    const name = $('#name');
-    const mail = $('#mail');
-    const activities = $('.activities input');
+
+
     $('.required-input').each(function () {
         console.log(this);
        $(this).removeClass('required-input');
+
     });
 
     if (!name.val()){
@@ -20,17 +37,30 @@ function validate(e) {
     }
     if(!checkActivity(activities)){
         addError($('.activities'));
-        console.log('yes');
 
     }
+     if (selectPayment.selectedIndex===1) {
+         if (!checkCCNum(ccNum.val())) {
+             addError(ccNum);
 
-    if(falseCount===0){ validForm = true;}
+         }
+         if (!checkZip(zipNum.val())) {
+             addError(zipNum);
+         }
+         if (!checkCVV(cvvNum.val())) {
+             addError(cvvNum);
+         }
 
-    if(!validForm){
-        e.preventDefault();
-        window.location.assign("#top");
+         if (falseCount === 0) {
+             validForm = true;
+         }
 
-    }
+         if (!validForm) {
+             e.preventDefault();
+             window.location.assign("#top");
+
+         }
+     }
     
 }
 function addError(selector) {
@@ -59,5 +89,32 @@ function checkActivity(selector) {
     });
 
     return activityCount;
+
+}
+function checkCCNum(ccNum) {
+    //console.log(ccNum.length);
+    if (ccNum.length>=13&&ccNum.length<=16){
+        return true;
+    }else {
+        return false;
+    }
+
+}
+function checkZip(zip) {
+   // console.log(zip.length);
+    if (zip.length===5){
+        return true;
+    }else {
+        return false;
+    }
+
+}
+function checkCVV(cvv) {
+    console.log(cvv.length);
+    if (cvv.length===3){
+        return true;
+    }else {
+        return false;
+    }
 
 }
